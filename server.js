@@ -41,22 +41,17 @@ app.get('/api/:date',(req,res)=>{
            });
         }
     } 
-    else if(/\d{2}-\d{2}-\d{2}$/g.test(date)){
-        if(dateIsValid(new Date(date))){
-            res.json({
-                'unix':Date.parse(date),
-                'utc':new Date(date).toUTCString(),
-            });
-        }else{
-            res.json({
-                error : "Invalid Date" 
-            });
-        }
+    else if(dateIsValid(new Date(date))){
+        res.json({
+            'unix':Date.parse(date),
+            'utc':new Date(date).toUTCString(),
+        });
     }else{
-       res.json({
-             error : "Invalid Date" 
+        res.json({
+            error : "Invalid Date" 
         });
     }
+
 
 
 });
